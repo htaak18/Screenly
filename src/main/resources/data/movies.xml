@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    movies.xml – Seed data: 3 movies
+    Each movie has a unique ID (m-XXXXX), title, genre, description,
+    duration in minutes, language, rating, and an optional posterUrl.
+    posterUrl is a path relative to the webapp root (served as /contextPath/posterUrl).
+-->
+<movies>
+
+    <movie>
+        <id>m-inc001</id>
+        <title>Inception</title>
+        <genre>Sci-Fi / Thriller</genre>
+        <description>A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO. Mind-bending and visually spectacular.</description>
+        <durationMinutes>148</durationMinutes>
+        <language>English</language>
+        <rating>U/A</rating>
+        <posterUrl>images/posters/inception.jpg</posterUrl>
+    </movie>
+
+    <movie>
+        <id>m-rck001</id>
+        <title>RRR</title>
+        <genre>Action / Drama</genre>
+        <description>A fictional tale about two legendary Indian revolutionaries – Alluri Sitarama Raju and Komaram Bheem – who fought against the British Raj and Nizam of Hyderabad respectively.</description>
+        <durationMinutes>187</durationMinutes>
+        <language>Telugu</language>
+        <rating>U/A</rating>
+        <posterUrl>images/posters/rrr.jpg</posterUrl>
+    </movie>
+
+    <movie>
+        <id>m-int001</id>
+        <title>Interstellar</title>
+        <genre>Sci-Fi / Adventure</genre>
+        <description>When Earth becomes uninhabitable, a team of astronauts travels through a wormhole near Saturn in search of a new home for humanity. A stunning exploration of time, space, and love.</description>
+        <durationMinutes>169</durationMinutes>
+        <language>English</language>
+        <rating>U/A</rating>
+        <posterUrl>images/posters/intersteller.jpg</posterUrl>
+    </movie>
+
+</movies>

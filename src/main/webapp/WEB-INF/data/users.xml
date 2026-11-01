@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    users.xml – Seed data
+    Passwords (for viva / demo):
+      admin  → admin123
+      alice  → alice123
+      bob    → bob12345
+
+    Hash algorithm: SHA-256( salt_hex + plainPassword )
+    Salt: random 32-hex-char string unique per user.
+
+    SECURITY NOTE: We NEVER store plaintext passwords. The salt prevents
+    two users with the same password from having the same hash (rainbow-table defence).
+-->
+<users>
+
+    <!-- ===== ADMIN USER ===== -->
+    <user>
+        <id>u-admin01</id>
+        <username>admin</username>
+        <email>admin@movietix.com</email>
+        <passwordHash>a2ef14f9f7885c301271f725421f990a8145cee015023edda62805ad205efb99</passwordHash>
+        <salt>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6</salt>
+        <role>ADMIN</role>
+    </user>
+
+    <!-- ===== REGULAR USER: alice ===== -->
+    <user>
+        <id>u-alice01</id>
+        <username>alice</username>
+        <email>alice@example.com</email>
+        <passwordHash>c5924502390e34059a782fdb92ea3ed6d62d602c694c71d9acffd72866ab2a5d</passwordHash>
+        <salt>f1e2d3c4b5a6978869504132dabc1234</salt>
+        <role>USER</role>
+    </user>
+
+    <!-- ===== REGULAR USER: bob ===== -->
+    <user>
+        <id>u-bob0001</id>
+        <username>bob</username>
+        <email>bob@example.com</email>
+        <passwordHash>f19fc41ef47f560bc808fa17fa95669a352d3021568ec8f4438a212f94240f4d</passwordHash>
+        <salt>abcdef0123456789abcdef0123456789</salt>
+        <role>USER</role>
+    </user>
+
+</users>

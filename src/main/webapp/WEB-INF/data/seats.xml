@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    seats.xml – Persisted BOOKED seat records.
+    Empty on first run. Populated when users complete payment.
+
+    DESIGN NOTE: Only BOOKED seats are persisted here.
+    HELD seats are in-memory only (they expire in 7 minutes anyway).
+    On restart, every seat not listed here defaults to AVAILABLE.
+-->
+<seats/>

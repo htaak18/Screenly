@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.movietix</groupId>
+    <artifactId>movie-ticket-booking</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>Screenly – Online Movie Ticket Booking</name>
+    <description>University PBL Project – Screenly, Java 17, Servlets, JSP, XML storage, no database</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Data directory: resolved relative to the web-app working directory at runtime -->
+        <data.dir>${project.basedir}/src/main/resources/data</data.dir>
+    </properties>
+
+    <dependencies>
+
+        <!-- ======================================================
+             Jakarta EE 10 – Servlet API (Tomcat 10.1 compatible)
+             Provided scope: Tomcat already ships this at runtime.
+             ====================================================== -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ======================================================
+             Jakarta JSTL – needed in JSPs for <c:out>, <c:forEach>
+             We need both the API and the implementation (taglibs).
+             ====================================================== -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- ======================================================
+             JUnit 5 – for all concurrency and logic tests
+             ====================================================== -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>screenly</finalName>
+
+        <plugins>
+
+            <!-- ================================================
+                 Maven WAR plugin – packages the WAR file
+                 ================================================ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>true</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- ================================================
+                 Maven Surefire – run JUnit 5 tests with mvn test
+                 ================================================ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- Show test output in console (helpful for viva) -->
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
+
+            <!-- ================================================
+                 Cargo Plugin – embed Tomcat 10.1 and run:
+                 $ mvn cargo:run
+                 App will be at http://localhost:8080/screenly
+                 ================================================ -->
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
+                <version>1.10.12</version>
+                <configuration>
+                    <container>
+                        <!-- Tomcat 10.1 supports Jakarta EE 10 (jakarta.* imports) -->
+                        <containerId>tomcat10x</containerId>
+                        <type>embedded</type>
+                    </container>
+                    <configuration>
+                        <properties>
+                            <cargo.servlet.port>8080</cargo.servlet.port>
+                            <!-- Pass data directory as a system property so the app
+                                 can find XML files regardless of working directory -->
+                            <cargo.jvmargs>
+                                -Dmovietix.data.dir=${project.basedir}/src/main/resources/data
+                            </cargo.jvmargs>
+                        </properties>
+                    </configuration>
+                    <deployables>
+                        <deployable>
+                            <groupId>com.movietix</groupId>
+                            <artifactId>movie-ticket-booking</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <!-- Context path: http://localhost:8080/screenly -->
+                                <context>/screenly</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

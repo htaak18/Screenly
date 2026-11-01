@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    shows.xml – Seed data: 6 shows (2 per movie)
+    showDateTime is in ISO-8601 format: YYYY-MM-DDTHH:MM:SS
+    pricePerSeat is in Indian Rupees.
+    Dates are set far in the future so cancellation is always allowed.
+-->
+<shows>
+
+    <!-- ===== Inception Shows ===== -->
+    <show>
+        <id>sh-inc001</id>
+        <movieId>m-inc001</movieId>
+        <movieTitle>Inception</movieTitle>
+        <showDateTime>2027-06-15T10:30:00</showDateTime>
+        <pricePerSeat>200.0</pricePerSeat>
+        <hallName>Hall 1</hallName>
+    </show>
+
+    <show>
+        <id>sh-inc002</id>
+        <movieId>m-inc001</movieId>
+        <movieTitle>Inception</movieTitle>
+        <showDateTime>2027-06-15T18:00:00</showDateTime>
+        <pricePerSeat>250.0</pricePerSeat>
+        <hallName>Hall 2</hallName>
+    </show>
+
+    <!-- ===== RRR Shows ===== -->
+    <show>
+        <id>sh-rrr001</id>
+        <movieId>m-rck001</movieId>
+        <movieTitle>RRR</movieTitle>
+        <showDateTime>2027-06-16T11:00:00</showDateTime>
+        <pricePerSeat>180.0</pricePerSeat>
+        <hallName>Hall 1</hallName>
+    </show>
+
+    <show>
+        <id>sh-rrr002</id>
+        <movieId>m-rck001</movieId>
+        <movieTitle>RRR</movieTitle>
+        <showDateTime>2027-06-16T19:30:00</showDateTime>
+        <pricePerSeat>220.0</pricePerSeat>
+        <hallName>Hall 3</hallName>
+    </show>
+
+    <!-- ===== Interstellar Shows ===== -->
+    <show>
+        <id>sh-int001</id>
+        <movieId>m-int001</movieId>
+        <movieTitle>Interstellar</movieTitle>
+        <showDateTime>2027-06-17T09:00:00</showDateTime>
+        <pricePerSeat>200.0</pricePerSeat>
+        <hallName>Hall 2</hallName>
+    </show>
+
+    <show>
+        <id>sh-int002</id>
+        <movieId>m-int001</movieId>
+        <movieTitle>Interstellar</movieTitle>
+        <showDateTime>2027-06-17T16:30:00</showDateTime>
+        <pricePerSeat>300.0</pricePerSeat>
+        <hallName>Hall 1</hallName>
+    </show>
+
+</shows>

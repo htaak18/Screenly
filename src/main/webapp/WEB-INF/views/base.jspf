@@ -1,0 +1,128 @@
+<%--
+    base.jspf – shared header included at the top of every JSP.
+    Provides: HTML <head> with CSS/fonts, sticky navbar, flash messages.
+    JSTL c:out used for all user output to prevent XSS.
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${empty pageTitle ? 'Screenly' : pageTitle} – Screenly</title>
+    <meta name="description" content="${empty pageDesc ? 'Book movie tickets online with Screenly.' : pageDesc}">
+    <%-- Google Fonts: Inter (system-font fallback works offline) --%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <%-- App CSS --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/screenly.css">
+</head>
+<body>
+
+<%-- ===== NAVIGATION ===== --%>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <%-- Logo --%>
+        <a class="nav-brand" href="${pageContext.request.contextPath}/user/movies" aria-label="Screenly home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                <line x1="7" y1="2" x2="7" y2="22"/>
+                <line x1="17" y1="2" x2="17" y2="22"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <line x1="2" y1="7" x2="7" y2="7"/>
+                <line x1="2" y1="17" x2="7" y2="17"/>
+                <line x1="17" y1="17" x2="22" y2="17"/>
+                <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+            Screenly
+        </a>
+
+        <%-- Mobile toggle --%>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+
+        <%-- Nav links --%>
+        <ul class="nav-links" id="navLinks">
+            <c:choose>
+                <c:when test="${not empty sessionScope.loggedInUser}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/user/movies"
+                           class="${navActive == 'movies' ? 'nav-active' : ''}">Movies</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/user/bookings"
+                           class="${navActive == 'bookings' ? 'nav-active' : ''}">My Bookings</a>
+                    </li>
+                    <c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/dashboard"
+                               class="${navActive == 'admin' ? 'nav-active' : ''}">Admin</a>
+                        </li>
+                    </c:if>
+                    <li>
+                        <span class="nav-username"><c:out value="${sessionScope.loggedInUser.username}"/></span>
+                    </li>
+                    <li>
+                        <a class="btn-nav-logout" href="${pageContext.request.contextPath}/logout" id="logoutLink">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                    <li><a class="btn-nav-logout" href="${pageContext.request.contextPath}/register">Register</a></li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
+    </div>
+</nav>
+
+<%-- ===== FLASH MESSAGES ===== --%>
+<div class="container" style="padding-bottom:0; padding-top:1rem;">
+    <c:if test="${not empty sessionScope.flashSuccess}">
+        <div class="flash flash-success" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <c:out value="${sessionScope.flashSuccess}"/>
+        </div>
+        <c:remove var="flashSuccess" scope="session"/>
+    </c:if>
+    <c:if test="${not empty sessionScope.flashError}">
+        <div class="flash flash-error" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <c:out value="${sessionScope.flashError}"/>
+        </div>
+        <c:remove var="flashError" scope="session"/>
+    </c:if>
+</div>
+
+<%-- Mobile nav JS (inline – tiny) --%>
+<script>
+(function(){
+    var btn = document.getElementById('navToggle');
+    var menu = document.getElementById('navLinks');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+        var open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', function(e){
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>

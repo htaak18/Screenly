@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    bookings.xml – Persisted booking records.
+    Empty on first run. Created when payment is confirmed.
+    BookingStore reads this at startup to initialise IdGenerator counter.
+-->
+<bookings/>

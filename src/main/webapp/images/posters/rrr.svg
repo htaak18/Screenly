@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+  <defs>
+    <linearGradient id="bgRRR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0500"/>
+      <stop offset="60%" stop-color="#3d0c00"/>
+      <stop offset="100%" stop-color="#0a0000"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#ff4500" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a0500" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fireFlame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ff4500"/>
+      <stop offset="50%" stop-color="#ff8c00"/>
+      <stop offset="100%" stop-color="#ffd700" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="600" fill="url(#bgRRR)"/>
+  <!-- Fire glow -->
+  <ellipse cx="200" cy="270" rx="160" ry="140" fill="url(#fireGlow)"/>
+  <!-- Fire flames -->
+  <g opacity="0.7">
+    <ellipse cx="140" cy="310" rx="18" ry="60" fill="url(#fireFlame)" transform="rotate(-15,140,310)"/>
+    <ellipse cx="175" cy="290" rx="22" ry="80" fill="url(#fireFlame)"/>
+    <ellipse cx="200" cy="280" rx="28" ry="100" fill="url(#fireFlame)"/>
+    <ellipse cx="225" cy="290" rx="22" ry="80" fill="url(#fireFlame)"/>
+    <ellipse cx="260" cy="310" rx="18" ry="60" fill="url(#fireFlame)" transform="rotate(15,260,310)"/>
+  </g>
+  <!-- Two hero silhouettes back to back -->
+  <!-- Hero 1 (left) -->
+  <g fill="#1a0500" opacity="0.95">
+    <circle cx="170" cy="205" r="14"/>
+    <rect x="158" y="218" width="24" height="55" rx="4"/>
+    <rect x="142" y="222" width="16" height="8" rx="3"/>
+    <rect x="200" y="222" width="16" height="8" rx="3"/>
+    <rect x="162" y="272" width="10" height="35" rx="3"/>
+    <rect x="176" y="272" width="10" height="35" rx="3"/>
+  </g>
+  <!-- Hero 2 (right) -->
+  <g fill="#1a0500" opacity="0.95">
+    <circle cx="230" cy="205" r="14"/>
+    <rect x="218" y="218" width="24" height="55" rx="4"/>
+    <rect x="202" y="222" width="16" height="8" rx="3"/>
+    <rect x="242" y="222" width="16" height="8" rx="3"/>
+    <rect x="222" y="272" width="10" height="35" rx="3"/>
+    <rect x="236" y="272" width="10" height="35" rx="3"/>
+  </g>
+  <!-- Horizontal divider line between heroes -->
+  <line x1="200" y1="190" x2="200" y2="320" stroke="#ff4500" stroke-width="1" opacity="0.5"/>
+  <!-- Bottom dark band -->
+  <rect x="0" y="375" width="400" height="225" fill="#0a0000"/>
+  <!-- Decorative lines -->
+  <line x1="60" y1="390" x2="340" y2="390" stroke="#ff4500" stroke-width="0.8" opacity="0.4"/>
+  <!-- Title -->
+  <text x="200" y="435" text-anchor="middle" font-family="Georgia, serif" font-size="68" font-weight="bold" fill="#ff4500" letter-spacing="10">RRR</text>
+  <line x1="80" y1="450" x2="320" y2="450" stroke="#cc3300" stroke-width="1.5"/>
+  <text x="200" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#cc5522" letter-spacing="5">RISE  ·  ROAR  ·  REVOLT</text>
+  <text x="200" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#662200" letter-spacing="2">Action / Drama  ·  187 min  ·  Telugu</text>
+  <text x="200" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#441100" letter-spacing="1">U/A</text>
+</svg>
